@@ -14,15 +14,17 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // set up our view to present our game
         guard let view = self.view as? SKView else {return}
         
         // set up our game scene
-        
         let gameScene = GameScene(size: view.frame.size)
         gameScene.scaleMode = .aspectFit
+        
         // present our game scene
         view.presentScene(gameScene)
+
     }
     
     override var shouldAutorotate: Bool {

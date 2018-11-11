@@ -13,6 +13,7 @@
 		285DF90A215442A2008A9DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 285DF908215442A2008A9DCD /* Main.storyboard */; };
 		285DF90C215442A3008A9DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 285DF90B215442A3008A9DCD /* Assets.xcassets */; };
 		285DF90F215442A3008A9DCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 285DF90D215442A3008A9DCD /* LaunchScreen.storyboard */; };
+		DF1022F82198926800599540 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1022F72198926800599540 /* Utils.swift */; };
 		DFDA28252197524C008390B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA28242197524C008390B9 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		285DF90B215442A3008A9DCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		285DF90E215442A3008A9DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		285DF910215442A3008A9DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF1022F72198926800599540 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		DFDA28242197524C008390B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 				285DF90D215442A3008A9DCD /* LaunchScreen.storyboard */,
 				285DF910215442A3008A9DCD /* Info.plist */,
 				DFDA28242197524C008390B9 /* ViewController.swift */,
+				DF1022F72198926800599540 /* Utils.swift */,
 			);
 			path = "pop-the-bubble";
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF1022F82198926800599540 /* Utils.swift in Sources */,
 				285DF905215442A2008A9DCD /* GameScene.swift in Sources */,
 				285DF907215442A2008A9DCD /* GameViewController.swift in Sources */,
 				DFDA28252197524C008390B9 /* ViewController.swift in Sources */,

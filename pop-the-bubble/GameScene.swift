@@ -10,85 +10,80 @@ import SpriteKit
 import GameplayKit
 import Foundation
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
- var ballCategory: UInt32 = 0xb0001
- var edgeCategory: UInt32 = 0xb0010
-var nodeCount = 0
-    let d = UserDefaults.standard
+class GameScene: SKScene {
+
+    let ballCategory: UInt32 = 0xb0001
+    let edgeCategory: UInt32 = 0xb0010
+    let BottomCategory : UInt32 = 0x1 << 1
+    var nodeCount = 0
+    let store = UserDefaults.standard
 
     override func didMove(to view: SKView){
 
+        //set physicsWorld properties
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
+
+        //set edges as PhysicsBody
+        let edge = SKPhysicsBody(edgeLoopFrom: self.frame)
+        edge.friction = 0
+        edge.categoryBitMask = edgeCategory
+        self.physicsBody = edge
+
         runActions()
     }
 
     func runActions(number: Int = 0){
-        let numberOfBubbles = d.integer(forKey: "Bubbles")
 
-       // let w = SKAction.wait(forDuration: 1)
+        let numberOfBubbles = store.integer(forKey: "Bubbles")
+
         let makeAbubble = SKAction.run {
             self.makebubble()
         }
 
-        let seq = SKAction.sequence([makeAbubble])
-        let req = SKAction.repeat(seq, count: numberOfBubbles-number)
+        let sequence = SKAction.sequence([makeAbubble])
+        let request = SKAction.repeat(sequence, count: numberOfBubbles-number)
 
-        run (req)
+        run(request)
 
     }
 
     func makebubble() {
 
-        // define a size for a bubble
         let bubbleTexture = SKTexture(imageNamed: "bubble")
-
         let bubble = SKSpriteNode(texture: bubbleTexture)
         let bphysicsBody = SKPhysicsBody(circleOfRadius: bubbleTexture.size().height/2)
 
         bphysicsBody.isDynamic = true
-        bphysicsBody.categoryBitMask = ballCategory
-        bphysicsBody.collisionBitMask = ballCategory | edgeCategory
-        bphysicsBody.contactTestBitMask = ballCategory | edgeCategory
-        bphysicsBody.applyImpulse(CGVector(dx: 2.0, dy: -2.0))
         bphysicsBody.usesPreciseCollisionDetection = true
         bphysicsBody.restitution = 1
         bphysicsBody.friction = 0
         bphysicsBody.angularDamping = 0
         bphysicsBody.linearDamping = 0
+        bphysicsBody.categoryBitMask = ballCategory
+        bphysicsBody.collisionBitMask = ballCategory | edgeCategory
+        bphysicsBody.contactTestBitMask = ballCategory | edgeCategory
         bubble.physicsBody = bphysicsBody
         bubble.name = "bubble"
 
-        let edge = SKPhysicsBody(edgeLoopFrom: self.frame)
-        edge.categoryBitMask = edgeCategory
-        edge.contactTestBitMask = ballCategory
-        edge.collisionBitMask = ballCategory
-        edge.usesPreciseCollisionDetection = true
-        edge.friction = 0
-        self.physicsBody = edge
-
         // Get a random possition within the width of the scene
-        let x = CGFloat(randomize(number: Int(size.width - 40)) + 20)
-        let y = CGFloat(randomize(number: Int(size.height - 40)) + 20)
+        let x = CGFloat(randomize(number: Int(size.width - 40)))
+        let y = CGFloat(randomize(number: Int(size.height - 40)))
 
         // position the bubble
         bubble.position.x = x
         bubble.position.y = y
 
-        // craete an action to move the move up teh screen
-       // let float = SKAction.repeatForever(SKAction.moveTo(y: +yScale, duration: 6))
-
-       // bubble.run(float)
- // Add the bubble
+        // Add the bubble
         addMyChild(node: bubble)
-
     }
-    
+}
 
-    
+extension GameScene: SKPhysicsContactDelegate{
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         if let touch = touches.first {
-            
+
             let location = touch.location(in: self)
             let node = atPoint(location)
             if node.name == "bubble" {
@@ -96,29 +91,21 @@ var nodeCount = 0
             }
         }
     }
-    func didBegin(_ contact: SKPhysicsContact) {
-        print("Collision")
-    }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-// print("Collision Ended")
-    }
-    
 }
 
 extension GameScene{
 
     func addMyChild(node:SKSpriteNode){
         self.addChild(node)
+        node.physicsBody!.applyImpulse(CGVector(dx: 10.0, dy: -2.0))
         nodeCount += 1
     }
 
     func removeMyChild(node:SKNode){
        node.removeFromParent()
         nodeCount -= 1
-         print("count",nodeCount)
         if nodeCount <= 4{
-runActions(number: 4)
+            runActions(number: 4)
         }
     }
 
