@@ -25,8 +25,6 @@ class GameViewController: UIViewController {
 gameScene.numberOfBubbles = self.numberOfBubbles
         // present our game scene
         view.presentScene(gameScene)
-
-
        
     }
     

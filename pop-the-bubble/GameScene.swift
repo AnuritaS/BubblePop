@@ -23,7 +23,7 @@ physicsWorld.contactDelegate = self
         }
 
         let seq = SKAction.sequence([w,makeABox])
-        let req = SKAction.repeatForever(seq)
+        let req = SKAction.repeat(seq, count: numberOfBubbles)
         
         run (req)
 
