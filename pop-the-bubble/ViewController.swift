@@ -18,20 +18,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func openBubbleVC(_ sender: Any) {
-
+        guard let input = userInputTF.text else{
+            print("ENTER")
+            return
+        }
+        let d = UserDefaults.standard
+        d.set(input, forKey: "Bubbles")
         performSegue(withIdentifier: "segueToBubbleVC", sender: self)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == "segueToBubbleVC" {
-     let controller = segue.destination as! GameViewController
-            guard let input = userInputTF.text else{
-                print("ENTER")
-                return
-            }
-            controller.numberOfBubbles = Int(input)
-         }
-
     }
 
 }

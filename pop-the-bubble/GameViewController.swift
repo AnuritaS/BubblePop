@@ -11,8 +11,7 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-    
-    var numberOfBubbles: Int!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // set up our view to present our game
@@ -20,12 +19,11 @@ class GameViewController: UIViewController {
         
         // set up our game scene
         
-        let gameScene = GameScene(size: self.view.frame.size)
+        let gameScene = GameScene(size: view.frame.size)
         gameScene.scaleMode = .aspectFit
-gameScene.numberOfBubbles = self.numberOfBubbles
         // present our game scene
         view.presentScene(gameScene)
-       
+       view.showsNodeCount = true
     }
     
     override var shouldAutorotate: Bool {
