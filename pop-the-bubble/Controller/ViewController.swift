@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var userInputTF: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -22,8 +23,8 @@ class ViewController: UIViewController {
     @IBAction func openBubbleVC(_ sender: Any) {
 
         //check for valid input
-        guard let input = Int(userInputTF.text ?? "0"), input > 4 else{
-          alert.showAlert(title: "Invalid", message: "Enter more than 4", presenter: self)
+        guard let input = Int(userInputTF.text ?? "0"), input > 4 && input <= 100 else{
+          alert.showAlert(title: "Invalid", message: "Enter a valid number", presenter: self)
             return
         }
 
