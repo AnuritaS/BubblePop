@@ -19,7 +19,7 @@ class GameScene: SKScene {
     let store = UserDefaults.standard
 
     override func didMove(to view: SKView){
-
+view.backgroundColor = UIColor.blue
         //set physicsWorld properties
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
@@ -83,7 +83,6 @@ extension GameScene: SKPhysicsContactDelegate{
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         if let touch = touches.first {
-
             let location = touch.location(in: self)
             let node = atPoint(location)
             if node.name == "bubble" {
