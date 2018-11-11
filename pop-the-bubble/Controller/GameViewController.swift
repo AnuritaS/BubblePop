@@ -19,24 +19,12 @@ class GameViewController: UIViewController {
         guard let view = self.view as? SKView else {return}
         
         // set up our game scene
-        let gameScene = GameScene(size: view.frame.size)
+        let gameScene = Bubble(size: view.frame.size)
         gameScene.scaleMode = .aspectFit
         
         // present our game scene
         view.presentScene(gameScene)
 
-    }
-    
-    override var shouldAutorotate: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
     }
 
     @IBAction func goBack(_ sender: Any) {
