@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var userInputTF: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     @IBAction func openBubbleVC(_ sender: Any) {
@@ -33,4 +35,7 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "segueToBubbleVC", sender: self)
     }
 
+    @objc func dismissKeyboard() {
+    view.endEditing(true)
+    }
 }
