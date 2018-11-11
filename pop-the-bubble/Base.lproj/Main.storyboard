@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of bubbles" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o72-B7-p0o">
-                                <rect key="frame" x="59" y="267" width="257" height="30"/>
+                                <rect key="frame" x="59" y="223" width="257" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -42,6 +42,7 @@
                         <viewLayoutGuide key="safeArea" id="YqI-UM-g4n"/>
                     </view>
                     <navigationItem key="navigationItem" id="rY0-IF-yAj"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="userInputTF" destination="o72-B7-p0o" id="O8J-Zk-UB1"/>
                         <segue destination="BV1-FR-VrT" kind="show" identifier="segueToBubbleVC" id="g5h-1n-DdW"/>
@@ -58,9 +59,24 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyT-K8-1Jp">
+                                <rect key="frame" x="22" y="29" width="69" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="goBack:" destination="BV1-FR-VrT" eventType="touchUpInside" id="rV0-ob-yx5"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.20496562968664625" green="0.64330601447966296" blue="0.87304121255874634" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="lyT-K8-1Jp" secondAttribute="trailing" constant="284" id="Gy6-Pv-A39"/>
+                            <constraint firstItem="lyT-K8-1Jp" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="9" id="j6q-om-Jx9"/>
+                            <constraint firstItem="lyT-K8-1Jp" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="22" id="nUe-Ec-soI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,10 +85,10 @@
         <!--Navigation Controller-->
         <scene sceneID="mU8-n0-YV8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9KD-Ca-bMu" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="9KD-Ca-bMu" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kcH-gU-u4x">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

@@ -23,7 +23,6 @@ class GameViewController: UIViewController {
         gameScene.scaleMode = .aspectFit
         // present our game scene
         view.presentScene(gameScene)
-       view.showsNodeCount = true
     }
     
     override var shouldAutorotate: Bool {
@@ -38,13 +37,8 @@ class GameViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
+    @IBAction func goBack(_ sender: Any) {
+       self.navigationController?.popViewController(animated: true)
     }
 }
 

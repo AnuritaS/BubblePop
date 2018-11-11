@@ -19,7 +19,7 @@ var nodeCount = 0
     override func didMove(to view: SKView){
 
         physicsWorld.contactDelegate = self
-
+        physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         runActions()
     }
 
@@ -30,6 +30,7 @@ var nodeCount = 0
         let makeAbubble = SKAction.run {
             self.makebubble()
         }
+
         let seq = SKAction.sequence([makeAbubble])
         let req = SKAction.repeat(seq, count: numberOfBubbles-number)
 
@@ -38,18 +39,24 @@ var nodeCount = 0
     }
 
     func makebubble() {
-          physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
+
         // define a size for a bubble
         let bubbleTexture = SKTexture(imageNamed: "bubble")
 
         let bubble = SKSpriteNode(texture: bubbleTexture)
-        bubble.physicsBody = SKPhysicsBody(circleOfRadius: bubbleTexture.size().height/2)
-        bubble.physicsBody?.isDynamic = true
-        bubble.physicsBody?.categoryBitMask = ballCategory
-        bubble.physicsBody?.collisionBitMask = ballCategory | edgeCategory
-        bubble.physicsBody?.contactTestBitMask = ballCategory | edgeCategory
-        bubble.physicsBody?.applyImpulse(CGVector(dx: 2.0, dy: -2.0))
-        bubble.physicsBody?.usesPreciseCollisionDetection = true
+        let bphysicsBody = SKPhysicsBody(circleOfRadius: bubbleTexture.size().height/2)
+
+        bphysicsBody.isDynamic = true
+        bphysicsBody.categoryBitMask = ballCategory
+        bphysicsBody.collisionBitMask = ballCategory | edgeCategory
+        bphysicsBody.contactTestBitMask = ballCategory | edgeCategory
+        bphysicsBody.applyImpulse(CGVector(dx: 2.0, dy: -2.0))
+        bphysicsBody.usesPreciseCollisionDetection = true
+        bphysicsBody.restitution = 1
+        bphysicsBody.friction = 0
+        bphysicsBody.angularDamping = 0
+        bphysicsBody.linearDamping = 0
+        bubble.physicsBody = bphysicsBody
         bubble.name = "bubble"
 
         let edge = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -57,6 +64,7 @@ var nodeCount = 0
         edge.contactTestBitMask = ballCategory
         edge.collisionBitMask = ballCategory
         edge.usesPreciseCollisionDetection = true
+        edge.friction = 0
         self.physicsBody = edge
 
         // Get a random possition within the width of the scene
@@ -109,7 +117,7 @@ extension GameScene{
        node.removeFromParent()
         nodeCount -= 1
          print("count",nodeCount)
-        if nodeCount < 4{
+        if nodeCount <= 4{
 runActions(number: 4)
         }
     }
