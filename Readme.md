@@ -1,6 +1,6 @@
 # Bubble pop
 
-## TouchKin iOS Development Task
+## Internship iOS Development Task
 
 ### Aim: Create a bubble pop game taking user input 'n' , where 'n' is more than 4 and bubbles follow the laws of physics like collision and burst on touch and moving in a random direction.
 
